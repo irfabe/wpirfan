@@ -1,7 +1,5 @@
 <?php 
 
-    include_once 'Database.php';
-    //cara mengkonekksikan
     
 
 class User {
@@ -25,12 +23,18 @@ class User {
         $stmt->execute();
         return $stmt;
     }
+    public function getUserId($id){
+        $sqlQuery = "SELECT *  FROM " . $this->db_table . " WHERE id = ".$id;
+        $stmt = $this->conn->prepare($sqlQuery);
+        $stmt->execute();
+        return $stmt;
+    }
 }
 
-$database = new Database();
-$db = $database->getConnection();
-$query = new User($db);
-$result = $query->getUser()->fetchAll(PDO :: FETCH_ASSOC);
-//var_dump ($result);
+// $database = new Database();
+// $db = $database->getConnection();
+// $query = new User($db);
+// $result = $query->getUser()->fetchAll(PDO :: FETCH_ASSOC);
+// var_dump ($result);
 
 ?>
